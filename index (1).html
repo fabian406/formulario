@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de registro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="contenedor">
+    <header>
+      <h1>Formulario de registro</h1>
+      <p class="subtitulo">Completa tus datos para guardarlos en la base de datos.</p>
+    </header>
+
+    <form id="formulario" class="tarjeta">
+      <div class="fila">
+        <div class="campo">
+          <label for="nombres">Nombres</label>
+          <input id="nombres" name="nombres" placeholder="Tus nombres" required />
+        </div>
+        <div class="campo">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" name="apellidos" placeholder="Tus apellidos" required />
+        </div>
+      </div>
+
+      <div class="fila">
+        <div class="campo">
+          <label for="tipo_identificacion">Tipo de identificación</label>
+          <select id="tipo_identificacion" name="tipo_identificacion" required>
+            <option value="" disabled selected>Selecciona...</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="TI">Tarjeta de identidad</option>
+            <option value="CE">Cédula de extranjería</option>
+            <option value="RC">Registro civil</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="numero_identificacion">Número de identificación</label>
+          <input id="numero_identificacion" name="numero_identificacion" inputmode="numeric"
+                 pattern="[0-9]{5,15}" title="Solo números (entre 5 y 15 dígitos)"
+                 placeholder="Solo números" required />
+        </div>
+      </div>
+
+      <div class="fila">
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" name="correo" type="email" placeholder="tucorreo@ejemplo.com" required />
+        </div>
+        <div class="campo">
+          <label for="celular">Número de celular</label>
+          <input id="celular" name="celular" inputmode="tel" maxlength="10"
+                 pattern="[0-9]{10}" title="10 dígitos, solo números"
+                 placeholder="3001234567" required />
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje" required></textarea>
+      </div>
+
+      <button type="submit" id="btn-enviar">Enviar</button>
+      <div id="estado" class="estado" role="status" hidden></div>
+    </form>
+
+    <section id="guardado" class="tarjeta resultado" hidden>
+      <h2>Registro guardado</h2>
+      <div class="detalle">
+        <p class="nombre" id="d-nombre"></p>
+        <p id="d-identificacion"></p>
+        <p id="d-contacto"></p>
+        <p id="d-mensaje"></p>
+      </div>
+      <div class="barra-fondo"><div class="barra"></div></div>
+    </section>
+  </main>
+
+  <!-- Librería de Supabase (CDN) y lógica del formulario -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
